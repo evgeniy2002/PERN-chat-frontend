@@ -21,7 +21,7 @@ export const fetchMessages = createAsyncThunk('dialogs/fetchMessages', async (ro
 const initialState = {
   messages: [] as any,
   status: '' as string,
-  partnerName: '' as string
+  partnerName: '' as string,
 }
 
 

@@ -23,7 +23,9 @@ const initialState = {
   status: '' as string,
   partnerId: null as number | null,
   currentDialogId: '' as string,
-  roomId: null as number | null
+  roomId: null as number | null,
+  onlineUsers: [] as number[]
+  
 }
 
 
@@ -45,6 +47,9 @@ const dialogSlice = createSlice({
     setRoomId: (state, action) => {
       // socket.emit('DIALOGS:JOIN', action.payload)
       state.roomId = action.payload
+    },
+    setOnlineUsers: (state, action) => {
+      state.onlineUsers = action.payload
     }
   }, 
   extraReducers: (builder) => {
@@ -61,6 +66,6 @@ const dialogSlice = createSlice({
   }
 })
 
-export const {setDialogs, setCurrentDialogId,setPartnerId,setRoomId} = dialogSlice.actions
+export const {setDialogs, setCurrentDialogId,setPartnerId,setRoomId,setOnlineUsers} = dialogSlice.actions
 
 export default dialogSlice.reducer

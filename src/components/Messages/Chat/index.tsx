@@ -13,7 +13,9 @@ import no_message from '../../../assets/icons/no-message.svg';
 
 export const Chat = () => {
   const [message, setMessage] = React.useState('');
-  const { currentDialogId, roomId } = useAppSelector((state) => state.dialogs);
+  const { currentDialogId, roomId, partnerId, onlineUsers } = useAppSelector(
+    (state) => state.dialogs,
+  );
   const user = useAppSelector((state) => state.auth.user);
 
   const dispatch = useAppDispatch();
@@ -37,12 +39,12 @@ export const Chat = () => {
         userId: user?.id,
         roomId,
       };
-      const { data } = await instance.post('/message', obj);
+      await instance.post('/message', obj);
       // instance.post('/message', obj).then((data) => {
       //   console.log(data);
       // });
-      console.log(data);
-      dispatch(addMessage(data));
+      // console.log(data);
+      // dispatch(addMessage(data));
       // dispatch(fetchMessages(dialogId));
 
       setMessage('');
@@ -64,7 +66,11 @@ export const Chat = () => {
         <>
           <div className="messages-chat_info">
             <h3 className="messages-chat_info-name">{partnerName}</h3>
-            <p className="messages-chat_info-online">Online</p>
+            {partnerId && onlineUsers.includes(partnerId) ? (
+              <p className="messages-chat_info-online">online</p>
+            ) : (
+              <p className="messages-chat_info-offline">offline</p>
+            )}
           </div>
           <div className="messages-chat_content">
             {messages.map((message: any) => (

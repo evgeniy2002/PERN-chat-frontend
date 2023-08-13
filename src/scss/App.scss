@@ -195,6 +195,23 @@
           -moz-border-radius: 50%;
           -ms-border-radius: 50%;
           -o-border-radius: 50%;
+          &.online {
+            &::after {
+              content: "";
+              position: absolute;
+              left: 75%;
+              top: 70%;
+              width: 13px;
+              height: 13px;
+              background-color: #3bcc14;
+              border-radius: 50%;
+              -webkit-border-radius: 50%;
+              -moz-border-radius: 50%;
+              -ms-border-radius: 50%;
+              -o-border-radius: 50%;
+              border: 2px solid #fff;
+            }
+          }
           img {
             position: absolute;
             width: 100%;
@@ -373,10 +390,15 @@
         font-size: 16px;
       }
       p {
-        color: #3bcc14;
-        padding: 3px 0 0 1rem;
+        padding: 2px 0 0 1rem;
         font-size: 13px;
         font-weight: 500;
+      }
+      &-online {
+        color: #3bcc14;
+      }
+      &-offline {
+        color: red;
       }
     }
     &_content {

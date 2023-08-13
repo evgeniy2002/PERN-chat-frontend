@@ -20,6 +20,8 @@ function App() {
   const isAuth = useAppSelector((state) => !!state.auth.user);
   const search = useAppSelector((state) => state.users.search);
 
+  const user = useAppSelector((state) => state.auth.user);
+
   React.useEffect(() => {
     dispatch(checkAuthMe());
   }, [dispatch]);
@@ -44,6 +46,8 @@ function App() {
   React.useEffect(() => {
     if (!window.localStorage.getItem('token') && !isAuth) {
       navigate('/auth/login');
+    } else {
+      socket.emit('USER:STATUS', user?.id);
     }
   }, [isAuth]);
 
