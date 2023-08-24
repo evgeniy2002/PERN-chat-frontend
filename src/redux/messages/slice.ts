@@ -1,19 +1,22 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import instance from "../../axios";
+import { resolve } from "path";
 
 
 export const fetchMessages = createAsyncThunk('dialogs/fetchMessages', async (roomId: number | null) => {
 
-  // const { data } = await instance.get(`/im/${dialogId}`, {
-  //   params: {
-  //     partnerId,
-  //     userId
-  //   }
-  // })
-  const { data } = await instance.get(`/im/${roomId}`)
-  // console.log(data)
-  return data
+  return new Promise((resolve) => {
+    setTimeout(async () => {
+      try {
+        const { data } = await instance.get(`/im/${roomId}`)
+        resolve(data)
+        
+      } catch (error) {
+        console.log(error)
+      }
+    }, 500)
+  })
 })
 
 

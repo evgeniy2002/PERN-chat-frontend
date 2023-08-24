@@ -9,6 +9,7 @@ import socket from '../../socket';
 export const Messages: React.FC = () => {
   const { roomId, currentDialogId } = useAppSelector((state) => state.dialogs);
   const user = useAppSelector((state) => state.auth.user);
+  const messages = useAppSelector((state) => state.messages.messages);
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
@@ -16,10 +17,6 @@ export const Messages: React.FC = () => {
       dispatch(fetchMessages(roomId));
     }
   }, [roomId, dispatch]);
-
-  const onAddMessage = (message: any) => {
-    dispatch(addMessage(message));
-  };
 
   return (
     <div className="messages">

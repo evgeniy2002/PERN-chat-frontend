@@ -31,6 +31,8 @@ export const People = () => {
   const { roomId, dialogs, onlineUsers } = useAppSelector((state) => state.dialogs);
   const { users, status } = useAppSelector((state) => state.users);
   const user = useAppSelector((state) => state.auth.user);
+  const messages = useAppSelector((state) => state.messages.messages);
+
   // const [onlineUsers, setOnlineUsers] = React.useState<number[]>([]);
 
   React.useEffect(() => {
@@ -42,16 +44,12 @@ export const People = () => {
             userId: user?.id,
           },
         });
-        // console.log(data);
+
         if (dialogs.hasOwnProperty('existingDialogId')) {
           const { dialogs: conversations } = dialogs;
-          // console.log(conversations);
-          // const { existingDialogId, dialogs: conversations } = dialogs;
 
           dispatch(setDialogs(conversations));
           dispatch(setRoomId(dialogs.existingDialogId));
-          // const { roomId, conversations } = dialogs;
-          // console.log({ roomId, conversations });
         } else {
           dispatch(setDialogs(dialogs));
         }
@@ -179,7 +177,8 @@ export const People = () => {
               <div className="messages-people_content-body_info">
                 <h3 className="messages-people_content-body_title">{item.Partner?.fullName}</h3>
                 <p className="messages-people_content-body_message">
-                  Привет, как у тебя обстоят дела?
+                  {/* {messages[messages.length - 1].text} */}
+                  {/* Привет, как у тебя обстоят дела? */}
                 </p>
               </div>
               <div className="messages-people_content-body_general">

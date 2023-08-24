@@ -25,8 +25,8 @@ const initialState = {
   currentDialogId: '' as string,
   roomId: null as number | null,
   onlineUsers: [] as number[]
-  
 }
+// window.location.pathname.split('im/')[1]
 
 
 
